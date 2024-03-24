@@ -1,0 +1,15 @@
+#include <iostream>
+#include <Windows.h>
+
+int main() {
+    double temperature;
+    SYSTEM_POWER_STATUS status;
+    if (GetSystemPowerStatus(&status)) {
+        temperature = status.BatteryTemperature / 10.0;
+        std::cout << "Temperature: " << temperature << " degrees Celsius" << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve system temperature." << std::endl;
+        return 1;
+    }
+    return 0;
+}
